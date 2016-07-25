@@ -1,4 +1,5 @@
-<!DOCTYPE HTML>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="../common/pageContext.jsp"%>
 <html lang="en">
 
 <head>
@@ -6,7 +7,7 @@
 
 <title>Wedding</title>
 
-<script src="js/jquery.js"></script><!--/must be first-->
+<script src="${path}/js/jquery.js"></script><!--/must be first-->
 
 <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
@@ -16,27 +17,27 @@
 <![endif]-->  
 
 <!--/for 960grid-->
-<link rel="stylesheet" media="all" href="css/reset.css" />
-<link rel="stylesheet" media="all" href="css/text.css" />
-<link rel="stylesheet" media="all" href="css/960.css" />
+<link rel="stylesheet" media="all" href="${path}/css/reset.css" />
+<link rel="stylesheet" media="all" href="${path}/css/text.css" />
+<link rel="stylesheet" media="all" href="${path}/css/960.css" />
   
   
-<link rel="stylesheet" href="css/main.css" media="screen"/>
+<link rel="stylesheet" href="${path}/css/main.css" media="screen"/>
   
-<link rel="stylesheet" href="css/about_wedding.css" media="screen"/>
+<link rel="stylesheet" href="${path}/css/about_wedding.css" media="screen"/>
 
 
-<link rel="stylesheet" href="css/pictureslider.css" media="screen" /><!--css for picture slider-->
+<link rel="stylesheet" href="${path}/css/pictureslider.css" media="screen" /><!--css for picture slider-->
    
-<link rel="stylesheet" href="css/nivo-slider.css" media="screen" /><!--css for drop down-->
+<link rel="stylesheet" href="${path}/css/nivo-slider.css" media="screen" /><!--css for drop down-->
 
      
 <!--[if IE]> 
-<link type="text/css" rel="stylesheet" href="css/ie.css" /> 
+<link type="text/css" rel="stylesheet" href="${path}/css/ie.css" />
 <![endif]--><!--/all ie browsers-->
      
 
-<script src="js/script.js"></script>
+<script src="${path}/js/script.js"></script>
 
 
 <!--/image fade-->
@@ -60,11 +61,11 @@ $('.pic2').delay(1000).fadeIn(1500);
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <link href="styles.html" rel="stylesheet"  />
-<script src="js/hover.js"></script>
+<script src="${path}/js/hover.js"></script>
 
 <!--/picture hover-->
 <!--/IE curvy corners-->
-<script type="text/javascript" src="js/curvy.corners.trunk.js"></script>
+<script type="text/javascript" src="${path}/js/curvy.corners.trunk.js"></script>
 <!--/IE curvy corners-->
 
 
@@ -110,7 +111,7 @@ $('.pic2').delay(1000).fadeIn(1500);
 
 
 <li>
-		<a href="about.html" class="menulink radius">About</a>
+		<a href="about.jsp" class="menulink radius">About</a>
 
 </li>
 
@@ -255,13 +256,13 @@ meis aeterno, nec et nobis tantas. Sit partem deserunt ea, graecis electram vis 
 
 
  <section class="iconsfooter"> 
-<a href="#" class="iconfooter"><img src="images/iconfb.png" alt="Facebook" /></a>
+<a href="#" class="iconfooter"><img src="${path}/images/iconfb.png" alt="Facebook" /></a>
 
-<a href="#" class="iconfooter"><img src="images/icongoogleplus.png" alt="Googleplus" /></a>
+<a href="#" class="iconfooter"><img src="${path}/images/icongoogleplus.png" alt="Googleplus" /></a>
 
-<a href="#" class="iconfooter"><img src="images/icontwitter.png" alt="Twitter" /></a>
+<a href="#" class="iconfooter"><img src="${path}/images/icontwitter.png" alt="Twitter" /></a>
 
-<a href="#" class="iconfooter"><img src="images/iconcontact.png" alt="Contact" /></a>
+<a href="#" class="iconfooter"><img src="${path}/images/iconcontact.png" alt="Contact" /></a>
  </section><!--/iconsfooter-->
 
 
