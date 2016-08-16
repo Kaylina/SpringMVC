@@ -7,7 +7,7 @@
 
 <title>Wedding</title>
 
-<script src="${path}/js/jquery.js"></script><!--/must be first-->
+<script src="${path}/rs/js/jquery.js"></script><!--/must be first-->
 
 <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
@@ -17,26 +17,26 @@
 <![endif]-->  
 
 <!--/for 960grid-->
-<link rel="stylesheet" media="all" href="${path}/css/reset.css" />
-<link rel="stylesheet" media="all" href="${path}/css/text.css" />
-<link rel="stylesheet" media="all" href="${path}/css/960.css" />
+<link rel="stylesheet" media="all" href="${path}/rs/css/reset.css" />
+<link rel="stylesheet" media="all" href="${path}/rs/css/text.css" />
+<link rel="stylesheet" media="all" href="${path}/rs/css/960.css" />
   
   
-<link rel="stylesheet" href="${path}/css/main.css" media="screen"/>
+<link rel="stylesheet" href="${path}/rs/css/main.css" media="screen"/>
 
 
-<link rel="stylesheet" href="${path}/css/pictureslider.css" media="screen" /><!--css for picture slider-->
+<link rel="stylesheet" href="${path}/rs/css/pictureslider.css" media="screen" /><!--css for picture slider-->
    
-<link rel="stylesheet" href="${path}/css/nivo-slider.css" media="screen" /><!--css for drop down-->
+<link rel="stylesheet" href="${path}/rs/css/nivo-slider.css" media="screen" /><!--css for drop down-->
 
 
 <!--[if IE]> 
-<link rel="stylesheet" href="${path}/css/ie.css" />
+<link rel="stylesheet" href="${path}/rs/css/ie.css" />
 <![endif]--><!--/all ie browsers-->
 
 
      
-<script src="${path}/js/script.js"></script>
+<script src="${path}/rs/js/script.js"></script>
 
 
 <!--/image fade-->
@@ -59,12 +59,12 @@ $('.pic4').delay(1000).fadeIn(1500);
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <link href="styles.html" rel="stylesheet"  />
-<script src="${path}/js/hover.js"></script>
+<script src="${path}/rs/js/hover.js"></script>
 
 <!--/picture hover-->
 
 <!--/IE curvy corners-->
-<script type="text/javascript" src="${path}/js/curvy.corners.trunk.js"></script>
+<script type="text/javascript" src="${path}/rs/js/curvy.corners.trunk.js"></script>
 <!--/IE curvy corners-->
 
 </head>
@@ -162,15 +162,15 @@ $('.pic4').delay(1000).fadeIn(1500);
 
                 <div id="slider" class="nivoSlider picslide">
                
-                <img src="${path}/images/1.jpg" alt="picture" />
-                  <img src="${path}/images/2.jpg" alt="picture" />
+                <img src="${path}/rs/images/1.jpg" alt="picture" />
+                  <img src="${path}/rs/images/2.jpg" alt="picture" />
   
-                  <img src="${path}/images/3.jpg" alt="picture" />
+                  <img src="${path}/rs/images/3.jpg" alt="picture" />
                </div>
          
       </div>
 
-    <script src="${path}/js/jquery.nivo.slider.pack.js"></script>
+    <script src="${path}/rs/js/jquery.nivo.slider.pack.js"></script>
   <script>
 $(window).load(function() {
     $('#slider').nivoSlider({
@@ -218,7 +218,7 @@ $(window).load(function() {
 <section class="portraitbgleft"> 
 
 
-<img src="${path}/images/portraitleft.png" class="portraitpic" alt="picture" />
+<img src="${path}/rs/images/portraitleft.png" class="portraitpic" alt="picture" />
 
 </section> 
 
@@ -247,7 +247,7 @@ $(window).load(function() {
 
 
 <section class="portraitbgright"> 
-<img src="${path}/images/portraitright.png" class="portraitpic" alt="picture" />
+<img src="${path}/rs/images/portraitright.png" class="portraitpic" alt="picture" />
 
 </section> 
 
@@ -417,13 +417,13 @@ $(window).load(function() {
 
 
  <section class="iconsfooter"> 
-<a href="#" class="iconfooter"><img src="${path}/images/iconfb.png" alt="Facebook" /></a>
+<a href="#" class="iconfooter"><img src="${path}/rs/images/iconfb.png" alt="Facebook" /></a>
 
-<a href="#" class="iconfooter"><img src="${path}/images/icongoogleplus.png" alt="Googleplus" /></a>
+<a href="#" class="iconfooter"><img src="${path}/rs/images/icongoogleplus.png" alt="Googleplus" /></a>
 
-<a href="#" class="iconfooter"><img src="${path}/images/icontwitter.png" alt="Twitter" /></a>
+<a href="#" class="iconfooter"><img src="${path}/rs/images/icontwitter.png" alt="Twitter" /></a>
 
-<a href="#" class="iconfooter"><img src="${path}/images/iconcontact.png" alt="Contact" /></a>
+<a href="#" class="iconfooter"><img src="${path}/rs/images/iconcontact.png" alt="Contact" /></a>
  </section><!--/iconsfooter-->
 
 
