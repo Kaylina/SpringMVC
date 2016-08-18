@@ -40,6 +40,7 @@
         <hibernate-validator.version>5.0.3.Final</hibernate-validator.version>
         <jetty.version>8.1.15.v20140411</jetty.version>
         <activiti.version>5.18.0</activiti.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -238,6 +239,24 @@
                     </webAppConfig>
                 </configuration>
             </plugin>
+
+            <!-- resource插件 设置编码格式，批量（.zip .bar）发布流程 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <!-- 过滤流程定义资源文件 -->
+                        <nonFilteredFileExtension>zip</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>bar</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>png</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>bpmn</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
         </plugins>
         <!-- 先指定 src/main/resources下所有文件及文件夹为资源文件，打包时间替换所有资源文件 -->
         <resources>

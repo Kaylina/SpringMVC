@@ -16,6 +16,8 @@ public interface MyBatisDao<T> {
 
 	public int update(T t);
 
+	public int updateByMap(Map<String, Object> parameter);
+
 	public int delete(Object obj);
 
 	public int deleteById(Object objKey);
@@ -32,5 +34,4 @@ public interface MyBatisDao<T> {
 
 	public List<T> findAll(T t);
 
-	public int updateByMap(Map<String, Object> parameter);
 }
