@@ -7,7 +7,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="transactionManager" ref="transactionManager" />
         <property name="databaseSchemaUpdate" value="true" />
-        <property name="jobExecutorActivate" value="true" />
+        <property name="jobExecutorActivate" value="false" />
         <property name="processDefinitionCacheLimit" value="10"/>
 <!-- mail配置，具体再配 -->
         <property name="mailServerHost" value="localhost"/>
@@ -33,6 +33,8 @@
     <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"/>
     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService"/>
     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService"/>
+    <!-- 初始化测试数据 -->
+    <bean id="personService" class="com.elixir.activiti.service.impl.DemoDataInitConfig" />
     <!-- 集成REST服务需要的bean -->
  <!--   <bean id="restResponseFactory" class="org.activiti.rest.service.api.RestResponseFactory" />
     <bean id="contentTypeResolver" class="org.activiti.rest.common.application.DefaultContentTypeResolver" />-->

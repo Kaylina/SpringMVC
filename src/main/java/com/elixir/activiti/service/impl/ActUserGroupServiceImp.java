@@ -29,7 +29,7 @@ public class ActUserGroupServiceImp implements ActUserGroupService {
      */
     @Transactional(rollbackFor = Exception.class, readOnly = false, propagation = Propagation.REQUIRED)
     public String createUser(String userId, String firstName, String lastName, String password,
-                             String email, String imageResource, List<String> groups, List<String> userInfo) {
+                             String email, String imageResource, List<String> groupIds, List<String> userInfo) {
 //      验证用户名是否唯一
         if (identityService.createUserQuery().userId(userId).count() == 0) {
             User user = identityService.newUser(userId);
@@ -38,9 +38,9 @@ public class ActUserGroupServiceImp implements ActUserGroupService {
             user.setPassword(password);
             user.setEmail(email);
             identityService.saveUser(user);
-            if (groups != null) {
-                for (String group : groups) {
-                    identityService.createMembership(userId, group);
+            if (groupIds != null) {
+                for (String groupId : groupIds) {
+                    identityService.createMembership(userId, groupId);
                 }
             }
         } else {

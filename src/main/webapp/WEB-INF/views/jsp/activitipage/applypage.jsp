@@ -24,6 +24,10 @@
       <td>借款金额：<input name="loanAmount" id="loanAmountId" class="easyui-validatebox"
                       style="width: 150px;" required='true'  missingMessage="借款金额不能为空" validType ="chs" ></td>
     </tr>
+    <tr>
+      <td></td>
+      <td><input id="loanTime" type="text" class="easyui-datebox"></td>
+    </tr>
   </table>
   <a href="javascript:void(0);" class="btn btn-success save-msg" iconCls="icon-save" plain="true" onclick="saveDate();">&nbsp;&nbsp;提交&nbsp;&nbsp;</a>
 </div>
