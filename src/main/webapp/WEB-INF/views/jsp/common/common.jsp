@@ -10,13 +10,10 @@
     <meta name="renderer" content="webkit"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Jingyan</title>
-   <%-- <link rel="icon" href="${path}/images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="${path}/images/favicon.ico" type="image/x-icon" />--%>
+    <link rel="icon" href="${path}/rs/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="${path}/rs/images/favicon.ico" type="image/x-icon" />
 </head>
-
+<link rel="stylesheet" href="${path}/rs/css/easyui/icon.css">
+<link rel="stylesheet" href="${path}/rs/css/easyui/default/easyui.css">
 <script type="text/javascript" src="${path}/rs/js/easyui/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/rs/js/easyui/jquery.easyui.min.js"></script>
-
-
-
-
