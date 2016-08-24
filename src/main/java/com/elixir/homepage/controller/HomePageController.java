@@ -21,7 +21,7 @@ public class HomePageController {
 		HomePageInfo homePageInfo = new HomePageInfo();
 		HomePageInfo homePageInfo1 = homePageService.findAllInfo(homePageInfo);
 		System.out.println("---" + homePageInfo1.getTitle());
-		modeAndView.setViewName("/homepage/home");
+		modeAndView.setViewName("/homepage/demo");
 		return modeAndView;
 	}
 }

@@ -2,8 +2,8 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/testm1471852447736" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1471852447736" name="" targetNamespace="http://www.activiti.org/testm1471852447736" typeLanguage="http://www.w3.org/2001/XMLSchema">
   <process id="PC1" isClosed="false" isExecutable="true" processType="None">
     <startEvent activiti:initiator="applyUserId" id="start" name="StartEvent"/>
-    <userTask activiti:exclusive="true" id="U1" name="UserTask"/>
-    <userTask activiti:exclusive="true" id="U2" name="UserTask2"/>
+    <userTask activiti:candidateGroups="deptLeader" activiti:exclusive="true" id="U1" name="UserTask"/>
+    <userTask activiti:candidateGroups="manage" activiti:exclusive="true" id="U2" name="UserTask2"/>
     <endEvent id="_5" name="EndEvent"/>
     <sequenceFlow id="_6" sourceRef="start" targetRef="U1"/>
     <sequenceFlow id="_8" sourceRef="U2" targetRef="_5"/>

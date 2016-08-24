@@ -74,7 +74,7 @@
 
 <!-- 改为shiro控制 -->
     <welcome-file-list>
-        <welcome-file>/WEB-INF/views/jsp/homepage/home.jsp</welcome-file>
+        <welcome-file>/WEB-INF/views/jsp/common/index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by jingyan on 2016/8/22.
+ * 同步 业务组织架构 到 activiti 用户表的重要接口，主要提供用户组关系的同步，组的查询、新增
  */
 @Service
 public class ActUserGroupServiceImp implements ActUserGroupService {

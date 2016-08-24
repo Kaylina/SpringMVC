@@ -29,7 +29,7 @@ public class DemoDataInitConfig {
                 "", Arrays.asList("manage", "user"), null);
 
         actUserGroupService.createUser("leaderuser", "Jhon", "Li", "000000", "jhon.li@le.com",
-                "", Arrays.asList("deptLeader", "user", "manage"), null);
+                "", Arrays.asList("deptLeader", "user"), null);
 
         actUserGroupService.createUser("kafeitu", "Coffee", "Rabbit", "000000", "coffee.rabbit@le.com",
                 "", Arrays.asList("user", "admin"), null);
