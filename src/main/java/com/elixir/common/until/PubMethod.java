@@ -1,8 +1,6 @@
 package com.elixir.common.until;
 
 
-
-
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -33,60 +31,12 @@ import java.util.Set;
 
 
 /**
-* @ClassName: PubMethod
-* @Description:
-* @author Jingyan
-* @date 2016年3月21日 下午5:50:13
-*/ 
+ * @author Jingyan
+ * @ClassName: PubMethod
+ * @Description:
+ * @date 2016年3月21日 下午5:50:13
+ */
 public class PubMethod {
-
-    /**
-     * po对象的拷贝
-     * （注：相同名字的属性其类型须一致；且属性的类型最好不是原始类型，类似int.long，最好使用Integer.Long ...）
-     *
-     * @param srcObj
-     * @param desObj
-     * @param copyPropertyArr 指定需要拷贝的属性的名称集合，为空表示不限制
-     * @return
-     * @author wangjianhua
-     */
-    public static void copyPersistantObject(Object srcObj, Object desObj, String[] copyPropertyArr) {
-        if (isEmpty(srcObj) || isEmpty(desObj)) {
-            System.err
-                    .println("NullPointerException at PubMethod.copyPersistantObject\n...........");
-            // throw new NullPointerException();
-        }
-        Method[] method = srcObj.getClass().getDeclaredMethods();
-        for (int index = 0; index < method.length; index++) {
-            // PubMethod.toPrint("method[index].getName():"+method[index].getName());
-            String methodName = method[index].getName();
-            methodName = (methodName == null) ? "" : methodName.trim();
-            if (methodName.startsWith("get")
-                    && hasMethodByName(desObj, methodName)) {
-                String fieldName = methodName.substring(3);// cut 'get'
-                String fieldRealName = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1);
-                if (copyPropertyArr == null || copyPropertyArr.length == 0 || !isInArray(fieldRealName, copyPropertyArr)) {
-                    continue;
-                }
-                Method desMethod = getMethodByName(desObj, "set" + fieldName);
-                Object val = null;
-                try {
-                    val = method[index].invoke(srcObj, null);
-                    if (val == null)// || "".equals(val.toString().trim()))
-                    {
-                        continue;
-                    }
-                    desMethod.invoke(desObj, new Object[]{val});
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
 
     /**
@@ -122,7 +72,6 @@ public class PubMethod {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -157,7 +106,6 @@ public class PubMethod {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         e.printStackTrace(pw);
-
         return sw.getBuffer().toString();
     }
 
@@ -174,7 +122,6 @@ public class PubMethod {
         if (isEmpty(obj) || isEmpty(methodName)) {
             return hasMethod;
         }
-
         Method[] method = obj.getClass().getDeclaredMethods();
         for (int index = 0; index < method.length; index++) {
             // PubMethod.toPrint("method[index].getName():"+method[index].getName());
@@ -201,7 +148,6 @@ public class PubMethod {
         if (isEmpty(obj) || isEmpty(methodName)) {
             return resMethod;
         }
-
         Method[] method = obj.getClass().getDeclaredMethods();
         for (int index = 0; index < method.length; index++) {
             // PubMethod.toPrint("method[index].getName():"+method[index].getName());
@@ -214,27 +160,6 @@ public class PubMethod {
         }
         return resMethod;
     }
-
-    /**
-     * 执行对象中指定的方法名
-     *
-     * @param obj
-     * @param methodName
-     * @return
-     */
-    public static Object execMethod(Object obj, String methodName) {
-        Method method = getMethodByName(obj, methodName);
-        Object val = null;
-        try {
-            val = method.invoke(obj, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        return val;
-    }
-
 
     public static void addArrayToList(List list, Object[] array) {
         for (Object obj : array) {
@@ -315,7 +240,6 @@ public class PubMethod {
     }
 
     public static boolean isEmpty(StringBuffer Value) {
-
         return (Value == null || (Value.toString().trim()).equals(""));
     }
 
@@ -396,7 +320,6 @@ public class PubMethod {
             return tmpArr;
         }
     }
-
 
     public static String getFirstEleFromArr(Object obj) {
         String[] strArr = (String[]) obj;
@@ -526,7 +449,6 @@ public class PubMethod {
         if (oldNum < 999999999999l) {
             newNum = oldNum + 1;
         }
-
         String newNumStr = String.valueOf(newNum);
         String formatter = "000000000000";
         newId = DateUtil.getYMD() + formatter.substring(0, 12 - newNumStr.length()) + newNumStr;
@@ -554,7 +476,6 @@ public class PubMethod {
                     valuei = map.get(keyArr[i]);
                     n++;
                 }
-
                 if (n >= keyArr.length) continue;
                 Double valuej = map.get(keyArr[j]);
                 if (valuej == null) continue;
@@ -629,7 +550,8 @@ public class PubMethod {
 
     /**
      * 将字符串转换为UTF-8格式
-      * @param str
+     *
+     * @param str
      * @return
      */
     public static String getUTF8String(String str) {
@@ -637,7 +559,7 @@ public class PubMethod {
             return null;
         } else {
             try {
-                return new String(str.getBytes() ,"utf-8");
+                return new String(str.getBytes(), "utf-8");
             } catch (UnsupportedEncodingException e) {
                 return null;
             }
@@ -659,37 +581,34 @@ public class PubMethod {
 
     public static String getDateTimeRadomStr(int length) {
         SimpleDateFormat yyyyMMddHHmmssSSSFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-        return yyyyMMddHHmmssSSSFormat.format(new Date())+getRandomStr(length);
+        return yyyyMMddHHmmssSSSFormat.format(new Date()) + getRandomStr(length);
     }
+
     //进件号生成规则
     public static String getPackageNo(int length) {
-    	SimpleDateFormat yyyyMMddHHmmssSSSFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-    	return "J"+yyyyMMddHHmmssSSSFormat.format(new Date())+getRandomStr(length);
+        SimpleDateFormat yyyyMMddHHmmssSSSFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        return "J" + yyyyMMddHHmmssSSSFormat.format(new Date()) + getRandomStr(length);
     }
 
     /**
      * 将一个 Map 对象转化为一个 JavaBean
+     *
      * @param type 要转化的类型
-     * @param map 包含属性值的 map
+     * @param map  包含属性值的 map
      * @return 转化出来的 JavaBean 对象
-     * @throws IntrospectionException
-     *             如果分析类属性失败
-     * @throws IllegalAccessException
-     *             如果实例化 JavaBean 失败
-     * @throws InstantiationException
-     *             如果实例化 JavaBean 失败
-     * @throws InvocationTargetException
-     *             如果调用属性的 setter 方法失败
+     * @throws IntrospectionException    如果分析类属性失败
+     * @throws IllegalAccessException    如果实例化 JavaBean 失败
+     * @throws InstantiationException    如果实例化 JavaBean 失败
+     * @throws InvocationTargetException 如果调用属性的 setter 方法失败
      */
     public static Object convertMap(Class type, Map map)
             throws IntrospectionException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         BeanInfo beanInfo = Introspector.getBeanInfo(type); // 获取类属性
         Object obj = type.newInstance(); // 创建 JavaBean 对象
-
         // 给 JavaBean 对象的属性赋值
-        PropertyDescriptor[] propertyDescriptors =  beanInfo.getPropertyDescriptors();
-        for (int i = 0; i< propertyDescriptors.length; i++) {
+        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+        for (int i = 0; i < propertyDescriptors.length; i++) {
             PropertyDescriptor descriptor = propertyDescriptors[i];
             String propertyName = descriptor.getName();
 
@@ -708,10 +627,11 @@ public class PubMethod {
 
     /**
      * 将一个 JavaBean 对象转化为一个  Map
+     *
      * @param bean 要转化的JavaBean 对象
      * @return 转化出来的  Map 对象
-     * @throws IntrospectionException 如果分析类属性失败
-     * @throws IllegalAccessException 如果实例化 JavaBean 失败
+     * @throws IntrospectionException    如果分析类属性失败
+     * @throws IllegalAccessException    如果实例化 JavaBean 失败
      * @throws InvocationTargetException 如果调用属性的 setter 方法失败
      */
     public static Map convertBean(Object bean)
@@ -720,8 +640,8 @@ public class PubMethod {
         Map returnMap = new HashMap();
         BeanInfo beanInfo = Introspector.getBeanInfo(type);
 
-        PropertyDescriptor[] propertyDescriptors =  beanInfo.getPropertyDescriptors();
-        for (int i = 0; i< propertyDescriptors.length; i++) {
+        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+        for (int i = 0; i < propertyDescriptors.length; i++) {
             PropertyDescriptor descriptor = propertyDescriptors[i];
             String propertyName = descriptor.getName();
             if (!propertyName.equals("class")) {
@@ -739,6 +659,7 @@ public class PubMethod {
 
     /**
      * 按bean属性顺序返回map
+     *
      * @param bean
      * @return
      * @throws IntrospectionException
@@ -751,9 +672,9 @@ public class PubMethod {
 
         Map orderMap = new LinkedHashMap();
         Field[] fields = bean.getClass().getDeclaredFields();
-        for(int i = 0; i < fields.length; i++) {
-            if(returnMap.containsKey(fields[i].getName()))
-                orderMap.put(fields[i].getName().toString(),returnMap.get(fields[i].getName()));
+        for (int i = 0; i < fields.length; i++) {
+            if (returnMap.containsKey(fields[i].getName()))
+                orderMap.put(fields[i].getName().toString(), returnMap.get(fields[i].getName()));
         }
 
         return orderMap;
@@ -761,6 +682,7 @@ public class PubMethod {
 
     /**
      * 获取一个都有值得map，如果bean的属性没值，就不放到map中
+     *
      * @param bean
      * @return
      * @throws IntrospectionException
@@ -772,9 +694,8 @@ public class PubMethod {
         Class type = bean.getClass();
         Map returnMap = new HashMap();
         BeanInfo beanInfo = Introspector.getBeanInfo(type);
-
-        PropertyDescriptor[] propertyDescriptors =  beanInfo.getPropertyDescriptors();
-        for (int i = 0; i< propertyDescriptors.length; i++) {
+        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+        for (int i = 0; i < propertyDescriptors.length; i++) {
             PropertyDescriptor descriptor = propertyDescriptors[i];
             String propertyName = descriptor.getName();
             if (!propertyName.equals("class")) {
@@ -798,29 +719,29 @@ public class PubMethod {
      * 数字金额大写转换，思想先写个完整的然后将如零拾替换成零
      * 要用到正则表达式
      */
-    public static String digitUppercase(double n){
+    public static String digitUppercase(double n) {
         String fraction[] = {"角", "分"};
-        String digit[] = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
+        String digit[] = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
         String unit[][] = {{"元", "万", "亿"},
                 {"", "拾", "佰", "仟"}};
 
-        String head = n < 0? "负": "";
+        String head = n < 0 ? "负" : "";
         n = Math.abs(n);
 
         String s = "";
         for (int i = 0; i < fraction.length; i++) {
-            s += (digit[(int)(Math.floor(n * 10 * Math.pow(10, i)) % 10)] + fraction[i]).replaceAll("(零.)+", "");
+            s += (digit[(int) (Math.floor(n * 10 * Math.pow(10, i)) % 10)] + fraction[i]).replaceAll("(零.)+", "");
         }
-        if(s.length()<1){
+        if (s.length() < 1) {
             s = "整";
         }
-        int integerPart = (int)Math.floor(n);
+        int integerPart = (int) Math.floor(n);
 
         for (int i = 0; i < unit[0].length && integerPart > 0; i++) {
-            String p ="";
+            String p = "";
             for (int j = 0; j < unit[1].length && n > 0; j++) {
-                p = digit[integerPart%10]+unit[1][j] + p;
-                integerPart = integerPart/10;
+                p = digit[integerPart % 10] + unit[1][j] + p;
+                integerPart = integerPart / 10;
             }
             s = p.replaceAll("(零.)*零$", "").replaceAll("^$", "零") + unit[0][i] + s;
         }
@@ -829,33 +750,34 @@ public class PubMethod {
 
     /**
      * 封装指定金额
+     *
      * @param balance
      * @param bit
      * @return
      */
-    public static Map<String, String> getNumBerMap(BigDecimal balance, int bit){
+    public static Map<String, String> getNumBerMap(BigDecimal balance, int bit) {
         Map<String, String> result = new HashMap<String, String>();
         String str = BigDecimalUtil.halfUp(balance).toString();
-        str = str.replace(".","");
+        str = str.replace(".", "");
         int length = str.length();
         for (int i = 0; i < bit; i++) {
-            if (i < length){
-                String theIndex = str.substring(length-i-1,length-i);
-                result.put("param"+i, theIndex);
+            if (i < length) {
+                String theIndex = str.substring(length - i - 1, length - i);
+                result.put("param" + i, theIndex);
 
-            }else if (i == length){
-                result.put("param"+i, "￥");
-            }else {
-                result.put("param"+i, "");
+            } else if (i == length) {
+                result.put("param" + i, "￥");
+            } else {
+                result.put("param" + i, "");
             }
         }
         return result;
     }
 
     public static void main(String[] args) {
-        Map<String, String> result =  getNumBerMap(new BigDecimal(123456.78), 8);
+        Map<String, String> result = getNumBerMap(new BigDecimal(123456.78), 8);
         for (int i = 0; i < 8; i++) {
-            System.out.println(result.get("param"+i));
+            System.out.println(result.get("param" + i));
         }
         System.out.println(result.size());
     }
