@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="renderer" content="webkit"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Jingyan</title>
+    <title>&nbsp;Elixir</title>
     <link rel="icon" href="${path}/rs/images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="${path}/rs/images/favicon.ico" type="image/x-icon" />
 </head>
@@ -17,3 +17,4 @@
 <link rel="stylesheet" href="${path}/rs/css/easyui/default/easyui.css">
 <script type="text/javascript" src="${path}/rs/js/easyui/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/rs/js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${path}/rs/js/easyui/easyui-lang-zh_CN.js"></script>

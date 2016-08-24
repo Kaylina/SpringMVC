@@ -37,6 +37,16 @@
 
 
 <script language="javascript">
+    /* 回车键 */
+    $(function () {
+        document.onkeydown = function (e) {
+            var ev = document.all ? window.event : e;
+            if (ev.keyCode == 13) {
+                clickHandler();
+            }
+        }
+    });
+
     function clickHandler() {
         var url = $('#urls').val();
         var reqUrl = "http://localhost:8080/" + url;
