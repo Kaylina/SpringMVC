@@ -28,7 +28,7 @@
 </div>
 <div style="margin-top: 10px;"><font size="4">http://localhost:8080/&nbsp;</font><input id="urls" type="text"
                                                                                         placeholder="请输入要测试请求.">&nbsp;
-    <input type="button" style="background:#00ff00" value="请求" onClick="clickHandler()"></div>
+    <input type="button" value="请求" onClick="clickHandler()"></div>
 
 
 <script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
