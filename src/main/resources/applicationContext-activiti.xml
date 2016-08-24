@@ -34,7 +34,8 @@
     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService"/>
     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService"/>
     <!-- 初始化测试数据 -->
-    <bean id="personService" class="com.elixir.activiti.service.impl.DemoDataInitConfig" />
+    <bean id="personService" class="com.elixir.activiti.util.DemoDataInitConfig" />
+
     <!-- 集成REST服务需要的bean -->
  <!--   <bean id="restResponseFactory" class="org.activiti.rest.service.api.RestResponseFactory" />
     <bean id="contentTypeResolver" class="org.activiti.rest.common.application.DefaultContentTypeResolver" />-->

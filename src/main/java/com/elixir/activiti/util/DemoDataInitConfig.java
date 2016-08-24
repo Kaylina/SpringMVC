@@ -1,4 +1,4 @@
-package com.elixir.activiti.service.impl;
+package com.elixir.activiti.util;
 
 import com.elixir.activiti.service.ActUserGroupService;
 import org.springframework.beans.factory.annotation.Autowired;

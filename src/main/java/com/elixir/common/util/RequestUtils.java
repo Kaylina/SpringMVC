@@ -7,7 +7,7 @@
  *  WITHOUT THE PRIOR WRITTEN PERMISSION OF TERA-SOFT CO., LTD
  *
  */
-package com.elixir.common.until;
+package com.elixir.common.util;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
