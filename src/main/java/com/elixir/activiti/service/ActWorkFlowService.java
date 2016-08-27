@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface ActWorkFlowService {
 
-    public String startActWorkFlow(String processKey, String businessKey,String startUserId, Map<String, Object> parameter);
+    public String startActWorkFlow(String processKey, String businessKey,String startUserId, Map<String, Object> variables);
 
     public List<BaseActBusinessBean> findTodoTasks(String userId);
 
@@ -21,7 +21,7 @@ public interface ActWorkFlowService {
 
     public String signforTask(String taskId,String userId);
 
-    public String completeTask(String taskId,Map<String, Object> parameter);
+    public String completeTask(String taskId,Map<String, Object> variables);
 
     public BaseActBusinessBean getTaskVariables(String taskId);
 

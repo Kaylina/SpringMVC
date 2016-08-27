@@ -53,7 +53,7 @@ public class ActWorkFlowServiceImp implements ActWorkFlowService {
      * Description: 启动工作流
      */
     @Transactional(rollbackFor = Exception.class, readOnly = false, propagation = Propagation.REQUIRED)
-    public String startActWorkFlow(String processKey, String businessKey, String startUserId, Map<String, Object> parameter) {
+    public String startActWorkFlow(String processKey, String businessKey, String startUserId, Map<String, Object> variables) {
         logger.info("************ 工作流准备启动 ************");
         logger.info("************ processKey: " + processKey + " ************");
         logger.info("************ businessKey: " + businessKey + " ************");
@@ -61,7 +61,7 @@ public class ActWorkFlowServiceImp implements ActWorkFlowService {
         try {
             // 用来设置启动流程的人员ID，引擎会自动把用户ID保存到 activiti:initiator 中（DB： ACT_HI_PROCINST → START_USER_ID_）
             identityService.setAuthenticatedUserId(startUserId);
-            ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processKey, businessKey, parameter);
+            ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processKey, businessKey, variables);
             processId = processInstance.getId();
             logger.info("************ 启动完成，processId: " + processId + " ************");
         } finally {
@@ -152,10 +152,10 @@ public class ActWorkFlowServiceImp implements ActWorkFlowService {
      * Description: 完成任务
      */
     @Transactional(rollbackFor = Exception.class, readOnly = false, propagation = Propagation.REQUIRED)
-    public String completeTask(String taskId, Map<String, Object> parameter) {
+    public String completeTask(String taskId, Map<String, Object> variables) {
         logger.info("************ 完成任务，taskId：" + taskId + " ************");
-        parameter.put("deptLeaderPass",true);
-        taskService.complete(taskId, parameter);
+        variables.put("deptLeaderPass",true);
+        taskService.complete(taskId, variables);
         return "success";
 
     }
