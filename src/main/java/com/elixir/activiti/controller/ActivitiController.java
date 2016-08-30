@@ -3,8 +3,9 @@ package com.elixir.activiti.controller;
 import com.elixir.activiti.domain.BaseActBusinessBean;
 import com.elixir.activiti.domain.DemoInfo;
 import com.elixir.activiti.service.ActWorkFlowService;
-import com.elixir.activiti.util.ActUtil;
+import com.elixir.activiti.util.ActFlowUtil;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +57,7 @@ public class ActivitiController {
     @RequestMapping("/findTodoTasks")
     @ResponseBody
     public String findTodoTasks(HttpServletRequest request) {
-        List<BaseActBusinessBean> results=actWorkFlowService.findTodoTasks("leaderuser");
+        List<BaseActBusinessBean> results = actWorkFlowService.findTodoTasks("leaderuser");
         for (BaseActBusinessBean baseActBusinessBean : results) {
             logger.info("************ RunningProcess1" + baseActBusinessBean.getBusinessKey() + " ************");
             logger.info("************ RunningProcess2" + baseActBusinessBean.getProcessInstance().getProcessDefinitionId() + " ************");
@@ -70,10 +71,11 @@ public class ActivitiController {
         }
         return "success";
     }
+
     @RequestMapping("/findTodoTasks2")
     @ResponseBody
     public String findTodoTasks2(HttpServletRequest request) {
-        List<BaseActBusinessBean> results=actWorkFlowService.findTodoTasks("hruser");
+        List<BaseActBusinessBean> results = actWorkFlowService.findTodoTasks("hruser");
         for (BaseActBusinessBean baseActBusinessBean : results) {
             logger.info("************ RunningProcess1" + baseActBusinessBean.getBusinessKey() + " ************");
             logger.info("************ RunningProcess2" + baseActBusinessBean.getProcessInstance().getProcessDefinitionId() + " ************");
@@ -92,7 +94,7 @@ public class ActivitiController {
     @RequestMapping("/findRunningProcessInstaces")
     @ResponseBody
     public String findRunningProcessInstaces(HttpServletRequest request) {
-        List<BaseActBusinessBean> results=actWorkFlowService.findRunningProcessInstaces("PC1");
+        List<BaseActBusinessBean> results = actWorkFlowService.findRunningProcessInstaces("PC1");
         for (BaseActBusinessBean baseActBusinessBean : results) {
             logger.info("************ RunningProcess1" + baseActBusinessBean.getBusinessKey() + " ************");
             logger.info("************ RunningProcess2" + baseActBusinessBean.getProcessInstance().getProcessDefinitionId() + " ************");
@@ -108,9 +110,9 @@ public class ActivitiController {
     @ResponseBody
     public String signforTask(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String taskId=(String)session.getAttribute("taskId");
+        String taskId = (String) session.getAttribute("taskId");
         logger.info("************ signforTask" + taskId + " ************");
-        actWorkFlowService.signforTask(taskId,"leaderuser");
+        actWorkFlowService.signforTask(taskId, "leaderuser");
         return "success";
     }
 
@@ -118,49 +120,30 @@ public class ActivitiController {
     @ResponseBody
     public String completeTask(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String taskId=(String)session.getAttribute("taskId");
+        String taskId = (String) session.getAttribute("taskId");
         logger.info("************ signforTask2" + taskId + " ************");
-        Map<String, Object> parameter=new HashMap<String, Object>();
+        Map<String, Object> parameter = new HashMap<String, Object>();
         actWorkFlowService.completeTask(taskId, parameter);
         return "success";
     }
 
-
-
-    @RequestMapping("/showImage")
-    public ModelAndView showImage(String procDefId,String procIstid){
-        ModelAndView modeAndView = new ModelAndView();
-        ActivityImpl wfLeaveImag = null;
-        try {
-            wfLeaveImag = ActUtil.getProcessMap(procDefId, procIstid);
-            modeAndView.addObject("wfLeaveImag", wfLeaveImag);
-            modeAndView.setViewName("/activitipage/showImg");
-        } catch (Exception e) {
-            logger.error("查看流程信息常。。。。");
-            e.printStackTrace();
-        }
-        logger.debug("已经获取流程信息!");
-        return modeAndView;
+    /**
+     * Created with: jingyan.
+     * Date: 2016/8/30  10:31
+     * Description: 跟踪任务
+     */
+    @RequestMapping("/showProcess")
+    public ModelAndView showProcessInstance(String procIstid, String procDefId) {
+        Map<String, Object> act = actWorkFlowService.getProcessMap(procIstid, procDefId);
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/activitipage/actimage");
+        mav.addObject("x", act.get("x"));
+        mav.addObject("y", act.get("y"));
+        mav.addObject("width", act.get("width"));
+        mav.addObject("height", act.get("height"));
+        mav.addObject("img", act.get("img"));
+        return mav;
     }
-//PC1:1:4    14
 
-
-    @RequestMapping("/findPic/{procDefId}")
-    public void findPic(@PathVariable String procDefId,HttpServletResponse response){
-        //HttpServletResponse response = ServletActionContext.getResponse();
-        try {
-            InputStream pic = ActUtil.findProcessPic(procDefId);
-
-            byte[] b = new byte[1024];
-            int len = -1;
-            while((len = pic.read(b, 0, 1024)) != -1) {
-                response.getOutputStream().write(b, 0, len);
-            }
-
-        } catch (Exception e) {
-            logger.error("获取图片失败。。。");
-            e.printStackTrace();
-        }
-    }
 
 }

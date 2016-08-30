@@ -5,6 +5,10 @@ import com.elixir.activiti.service.ActWorkFlowService;
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
+import org.activiti.engine.impl.RepositoryServiceImpl;
+import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
+import org.activiti.engine.impl.pvm.process.ActivityImpl;
+import org.activiti.engine.impl.pvm.process.ProcessDefinitionImpl;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
@@ -16,20 +20,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import sun.misc.BASE64Encoder;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by jingyan on 2016/8/23.
  * activiti 主要接口，提供：
- *                         启动任务、
- *                         查询自己代办任务、
- *                         查询运行中 和 已完成流程、
- *                         签收任务、
- *                         完成任务、
- *                         查询任务详细数据。
+ * 启动任务、
+ * 查询自己代办任务、
+ * 查询运行中 和 已完成流程、
+ * 签收任务、
+ * 完成任务、
+ * 查询任务详细数据。
  */
 @Service
 public class ActWorkFlowServiceImp implements ActWorkFlowService {
@@ -154,7 +162,7 @@ public class ActWorkFlowServiceImp implements ActWorkFlowService {
     @Transactional(rollbackFor = Exception.class, readOnly = false, propagation = Propagation.REQUIRED)
     public String completeTask(String taskId, Map<String, Object> variables) {
         logger.info("************ 完成任务，taskId：" + taskId + " ************");
-        variables.put("deptLeaderPass",true);
+        variables.put("deptLeaderPass", true);
         taskService.complete(taskId, variables);
         return "success";
 
@@ -183,4 +191,78 @@ public class ActWorkFlowServiceImp implements ActWorkFlowService {
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionId(processDefinitionId).singleResult();
         return processDefinition;
     }
+
+    /**
+     * Created with: jingyan.
+     * Date: 2016/8/30  9:47
+     * Description: 获取活动任务
+     */
+    public  Map<String, Object> getProcessMap(String procIstid,String procDefId) {
+        List<ActivityImpl> actImpls = new ArrayList<ActivityImpl>();
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(procIstid).singleResult();
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionId(procDefId).singleResult();
+        ProcessDefinitionImpl pdImpl = (ProcessDefinitionImpl) processDefinition;
+        String processDefinitionId = pdImpl.getId();// 流程标识
+        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl) repositoryService).getDeployedProcessDefinition(processDefinitionId);
+        List<ActivityImpl> activitiList = def.getActivities();// 获得当前任务的所有节点
+        List<String> ActiveActivityIds = runtimeService.getActiveActivityIds(processInstance.getId());
+        for (String activeId : ActiveActivityIds) {
+            for (ActivityImpl activityImpl : activitiList) {
+                String id = activityImpl.getId();
+                if (activityImpl.isScope()) {
+                    if (activityImpl.getActivities().size() > 1) {
+                        List<ActivityImpl> subAcList = activityImpl.getActivities();
+                        for (ActivityImpl subActImpl : subAcList) {
+                            String subid = subActImpl.getId();
+                            if (activeId.equals(subid)) {// 获得执行到那个节点
+                                actImpls.add(subActImpl);
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (activeId.equals(id)) {// 获得执行到那个节点
+                    actImpls.add(activityImpl);
+                }
+            }
+        }
+        String deploymentId = processDefinition.getDeploymentId();
+        String imageName = processDefinition.getDiagramResourceName();
+        ActivityImpl activity = actImpls.get(0);
+        InputStream resourceAsStream = repositoryService.getResourceAsStream(deploymentId, imageName);
+        String base64Img = GetImageStr(resourceAsStream);
+        int x = activity.getX();
+        int y = activity.getY();
+        int width = activity.getWidth();
+        int height = activity.getHeight();
+        Map<String, Object> result=new HashMap<String, Object>();
+        result.put("x",x);
+        result.put("y",y);
+        result.put("width",width);
+        result.put("height",height);
+        result.put("img","data:image/png;base64," + base64Img);
+        return result;
+    }
+
+
+  /**
+   * Created with: jingyan.
+   * Date: 2016/8/30  9:47
+   * Description: 用输入流编码
+   */ 
+    public static String GetImageStr(InputStream in) {//将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+        byte[] data = null;
+        //读取图片字节数组
+        try {
+            data = new byte[in.available()];
+            in.read(data);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //对字节数组Base64编码
+        BASE64Encoder encoder = new BASE64Encoder();
+        return encoder.encode(data);//返回Base64编码过的字节数组字符串
+    }
+
 }

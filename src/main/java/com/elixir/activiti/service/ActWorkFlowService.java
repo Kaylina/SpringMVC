@@ -1,6 +1,8 @@
 package com.elixir.activiti.service;
 
 import com.elixir.activiti.domain.BaseActBusinessBean;
+import org.activiti.engine.impl.pvm.process.ActivityImpl;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 
 import java.util.List;
@@ -24,5 +26,7 @@ public interface ActWorkFlowService {
     public String completeTask(String taskId,Map<String, Object> variables);
 
     public BaseActBusinessBean getTaskVariables(String taskId);
+
+    public Map<String, Object> getProcessMap(String procIstid,String procDefId);
 
 }

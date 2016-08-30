@@ -31,9 +31,9 @@ import org.apache.log4j.Logger;
  * @官网:www.itxxz.com
  *
  */
-public class ActUtil {
+public class ActFlowUtil {
 
-    private static Logger logger = Logger.getLogger(ActUtil.class);
+    private static Logger logger = Logger.getLogger(ActFlowUtil.class);
 
     private static ProcessEngine processEngine = ProcessEngines
             .getDefaultProcessEngine();

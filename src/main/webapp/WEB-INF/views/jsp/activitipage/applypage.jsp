@@ -38,7 +38,7 @@
 </html>
 <script>
   function graphTrace() {
-    var url="${path}/showImage?procDefId=PC1:1:4&procIstid=13";
+    var url="${path}/showProcess?procIstid=2509&procDefId=PC1:1:2504";
     window.open(url,'_blank');
   }
 
