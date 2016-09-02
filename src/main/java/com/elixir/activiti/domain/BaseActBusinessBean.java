@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class BaseActBusinessBean {
 
-    // 流程定义的key
+    // 业务主键
     protected String businessKey;
     // 流程任务
     private Task task;
