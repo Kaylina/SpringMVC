@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jingyan
-  Date: 2016/8/24
-  Time: 13:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="pageContext.jsp" %>
 <%@include file="common.jsp" %>
@@ -16,7 +9,7 @@
     <title>Elixir</title>
     <link rel="stylesheet" type="text/css" href="${path}/rs/css/clock/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/rs/css/clock/default.css">
-    <link href='http://fonts.useso.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <%-- <link href='http://fonts.useso.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>--%>
     <link rel="stylesheet" media="screen" href="${path}/rs/css/clock/main.css"/>
 </head>
 <body>
@@ -26,18 +19,17 @@
         <div id="myclock"></div>
     </div>
 </div>
-<div style="margin-top: 10px;"><font size="4">http://localhost:8080/&nbsp;</font><input id="urls" type="text"
-                                                                                        placeholder="请输入要测试请求.">&nbsp;
-    <input type="button" value="请求" onClick="clickHandler()"></div>
 
+<div style="margin-top: 10px;">
+    <font size="4">http://localhost:8080/&nbsp;</font>
+    <input id="urls" type="text" placeholder="请输入要测试请求.">&nbsp;
+    <input type="button" value="请求" onClick="clickHandler()">
+</div>
 
-<script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 <script>window.jQuery || document.write('<script src="${path}/rs/js/clock/jquery-2.1.1.min.js"><\/script>')</script>
 <script language="javascript" type="text/javascript" src="${path}/rs/js/clock/jquery.thooClock.js"></script>
 
-
 <script language="javascript">
-    /* 回车键 */
     $(function () {
         document.onkeydown = function (e) {
             var ev = document.all ? window.event : e;
@@ -81,9 +73,7 @@
             brandText: 'Jingyan',
             brandText2: 'Watch',
             onEverySecond: function () {
-                //callback that should be fired every second
             },
-            //alarmTime:'15:10',
             offAlarm: function () {
                 $('#alarm1').hide();
                 audioElement.pause();
@@ -91,7 +81,6 @@
                 $('body').css('background-color', '#FCFCFC');
             }
         });
-
     });
 
 
@@ -99,12 +88,10 @@
         $.fn.thooClock.clearAlarm();
     });
 
-
     $('#set').click(function () {
         var inp = $('#altime').val();
         $.fn.thooClock.setAlarm(inp);
     });
-
 
     function alarmBackground(y) {
         var color;
