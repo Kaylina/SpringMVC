@@ -43,14 +43,14 @@
 		<property name="prefix" value="/WEB-INF/views/jsp" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<mvc:resources mapping="/js/**" location="/resources/js/"/>
-	<mvc:resources mapping="/images/**" location="/resources/images/"/>
-	<mvc:resources mapping="/css/**" location="/resources/css/"/>
-	<mvc:resources mapping="/fonts/**" location="/resources/fonts/"/>
-	<mvc:resources mapping="/json/**" location="/resources/json/"/>
-	<mvc:resources mapping="/img/**" location="/resources/img/"/>
-	<mvc:resources mapping="/skin/**" location="/resources/skin/"/>
-	<mvc:resources mapping="/upload/**" location="/resources/upload/"/>
+	<mvc:resources mapping="/rs/js/**" location="/resources/js/"/>
+	<mvc:resources mapping="/rs/images/**" location="/resources/images/"/>
+	<mvc:resources mapping="/rs/css/**" location="/resources/css/"/>
+	<mvc:resources mapping="/rs/fonts/**" location="/resources/fonts/"/>
+	<mvc:resources mapping="/rs/json/**" location="/resources/json/"/>
+	<mvc:resources mapping="/rs/img/**" location="/resources/img/"/>
+	<mvc:resources mapping="/rs/skin/**" location="/resources/skin/"/>
+	<mvc:resources mapping="/rs/upload/**" location="/resources/upload/"/>
 
 	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
 	<mvc:default-servlet-handler />

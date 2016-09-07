@@ -19,10 +19,7 @@ public class HomePageController {
 	public ModelAndView TestMethod(){
 		ModelAndView modeAndView=new ModelAndView();
 		System.out.println("------------------123456");
-		HomePageInfo homePageInfo =new HomePageInfo();
-		HomePageInfo homePageInfo1=homePageService.findAllInfo(homePageInfo);
-		System.out.println("---"+homePageInfo1.getTitle());
-		modeAndView.setViewName("/homepage/home");
+		modeAndView.setViewName("/common/index");
 		return modeAndView;
 	}
 

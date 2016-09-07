@@ -486,57 +486,6 @@ public class DateUtil {
 			}
 		}
 
-    /**
-     * 通过指定的一种格式, 返回Date时间类型
-     *
-     * @param dateStr
-     *            时间格式为 yyyy/MM/dd 或者 yyyy MM dd 或者 yyyy-MM-dd格式的数据类型. 2003/12/15
-     * @return Date
-     */
-    public static Date getDate(String dateStr) {
-        if (null == dateStr || dateStr.equals("")) {
-            return null;
-        }
-        dateStr = dateStr.trim();
-        char c = 0;
-        for (int i = 0; i < dateStr.length(); i++) {
-            c = dateStr.charAt(i);
-            if (!StringUtil.isNumber(c)) {
-                break;
-            }
-        }
-        if (StringUtil.isNumber(c)) {
-            return null;
-        }
-        StringTokenizer tokenYmd = new StringTokenizer(dateStr, Character.toString(c));
-        int year = Integer.parseInt(tokenYmd.nextToken().trim());
-        int month = Integer.parseInt(tokenYmd.nextToken().trim());
-        String dayStr = tokenYmd.nextToken().trim();
-        int index;
-        for (index = 0; index < dayStr.length(); index++) {
-            c = dayStr.charAt(index);
-            if (!StringUtil.isNumber(c)) {
-                break;
-            }
-        }
-        int day = Integer.parseInt(dayStr.substring(0, index));
-        // added by wallace
-        int hour = 0;
-        int min = 0;
-        int sec = 0;
-
-        if (dateStr.length() > 10) {
-            String hms = dateStr.substring(10);
-            StringTokenizer tokenHms = new StringTokenizer(hms, ":");
-            hour = Integer.parseInt(tokenHms.nextToken().trim());
-            min = Integer.parseInt(tokenHms.nextToken().trim());
-            sec = Integer.parseInt(tokenHms.nextToken().trim());
-        }
-        Calendar cal = Calendar.getInstance();
-        cal.set(year, month - 1, day, hour, min, sec);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
-    }
 
     /**
      * 获取Date

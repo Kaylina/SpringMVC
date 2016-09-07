@@ -41,55 +41,6 @@ import java.util.Set;
 public class PubMethod {
 
     /**
-     * po对象的拷贝
-     * （注：相同名字的属性其类型须一致；且属性的类型最好不是原始类型，类似int.long，最好使用Integer.Long ...）
-     *
-     * @param srcObj
-     * @param desObj
-     * @param copyPropertyArr 指定需要拷贝的属性的名称集合，为空表示不限制
-     * @return
-     * @author wangjianhua
-     */
-    public static void copyPersistantObject(Object srcObj, Object desObj, String[] copyPropertyArr) {
-        if (isEmpty(srcObj) || isEmpty(desObj)) {
-            System.err
-                    .println("NullPointerException at PubMethod.copyPersistantObject\n...........");
-            // throw new NullPointerException();
-        }
-        Method[] method = srcObj.getClass().getDeclaredMethods();
-        for (int index = 0; index < method.length; index++) {
-            // PubMethod.toPrint("method[index].getName():"+method[index].getName());
-            String methodName = method[index].getName();
-            methodName = (methodName == null) ? "" : methodName.trim();
-            if (methodName.startsWith("get")
-                    && hasMethodByName(desObj, methodName)) {
-                String fieldName = methodName.substring(3);// cut 'get'
-                String fieldRealName = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1);
-                if (copyPropertyArr == null || copyPropertyArr.length == 0 || !isInArray(fieldRealName, copyPropertyArr)) {
-                    continue;
-                }
-                Method desMethod = getMethodByName(desObj, "set" + fieldName);
-                Object val = null;
-                try {
-                    val = method[index].invoke(srcObj, null);
-                    if (val == null)// || "".equals(val.toString().trim()))
-                    {
-                        continue;
-                    }
-                    desMethod.invoke(desObj, new Object[]{val});
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-
-    /**
      * 判断两对象的值是否不相等
      *
      * @param oldOne
@@ -214,27 +165,6 @@ public class PubMethod {
         }
         return resMethod;
     }
-
-    /**
-     * 执行对象中指定的方法名
-     *
-     * @param obj
-     * @param methodName
-     * @return
-     */
-    public static Object execMethod(Object obj, String methodName) {
-        Method method = getMethodByName(obj, methodName);
-        Object val = null;
-        try {
-            val = method.invoke(obj, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        return val;
-    }
-
 
     public static void addArrayToList(List list, Object[] array) {
         for (Object obj : array) {
